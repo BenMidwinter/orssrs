@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORS & SRS Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slider-container {
+            position: relative;
+            height: 40px;
+            margin: 20px 0;
+        }
+        
+        .slider-track {
+            background: linear-gradient(to right, #ef4444 0%, #f97316 25%, #eab308 50%, #22c55e 75%, #16a34a 100%);
+            height: 12px;
+            border-radius: 6px;
+            position: absolute;
+            top: 14px;
+            left: 0;
+            right: 0;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 12px;
+            background: transparent;
+            outline: none;
+            position: absolute;
+            top: 14px;
+            cursor: pointer;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 28px;
+            height: 28px;
+            background: white;
+            border: 4px solid #374151;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border-color: #1f2937;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            background: white;
+            border: 4px solid #374151;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+        }
+        
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            border-color: #1f2937;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">ORS & SRS Assessment</h1>
+            <p class="text-gray-600">Outcome Rating Scale & Session Rating Scale</p>
+        </div>
+
+        <!-- Session Information -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Session Information</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="pupil-name" class="block text-sm font-medium text-gray-700 mb-2">Pupil Name</label>
+                    <input type="text" id="pupil-name" placeholder="Enter pupil name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label for="session-date" class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+                    <input type="date" id="session-date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+                <div>
+                    <label for="session-number" class="block text-sm font-medium text-gray-700 mb-2">Session Number</label>
+                    <input type="number" id="session-number" placeholder="e.g. 1" min="1" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none">
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Container for Side-by-Side Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+            
+            <!-- ORS Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">ORS - Outcome Rating Scale</h2>
+                <p class="text-gray-600 mb-8">Looking back over the last week, including today, help me understand how you have been feeling by rating how well you have been doing in the following areas of your life:</p>
+                
+                <!-- Individual Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Individual</h3>
+                        <span class="text-2xl font-bold text-blue-600" id="individual-score">5.50</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Personal well-being (mood, self-esteem, anxiety, depression)</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="5.50" class="slider" id="individual-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Struggling</span>
+                        <span>10.00 - Doing well</span>
+                    </div>
+                </div>
+
+                <!-- Interpersonal Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Interpersonal</h3>
+                        <span class="text-2xl font-bold text-green-600" id="interpersonal-score">6.25</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Close relationships (family, partner, best friends)</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="6.25" class="slider" id="interpersonal-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Difficult</span>
+                        <span>10.00 - Great connections</span>
+                    </div>
+                </div>
+
+                <!-- Social Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Social</h3>
+                        <span class="text-2xl font-bold text-purple-600" id="social-score">4.75</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Social connections (school, work, friendships, activities)</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="4.75" class="slider" id="social-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Isolated</span>
+                        <span>10.00 - Thriving</span>
+                    </div>
+                </div>
+
+                <!-- Overall Scale -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Overall</h3>
+                        <span class="text-2xl font-bold text-orange-600" id="overall-score">7.10</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">General sense of well-being</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="7.10" class="slider" id="overall-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Really tough</span>
+                        <span>10.00 - Life is good</span>
+                    </div>
+                </div>
+
+                <!-- ORS Total Score -->
+                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">ORS Total Score</h3>
+                    <div class="text-3xl font-bold text-gray-800" id="ors-total-score">23.60</div>
+                    <div class="text-sm text-gray-600">out of 40.00</div>
+                </div>
+            </div>
+
+            <!-- SRS Section -->
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-6">SRS - Session Rating Scale</h2>
+                <p class="text-gray-600 mb-8">Please rate today's session by sliding the scale to the description that best fits your experience.</p>
+                
+                <!-- Relationship Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Relationship</h3>
+                        <span class="text-2xl font-bold text-pink-600" id="relationship-score">6.50</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">How connected did you feel with your therapist today?</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="6.50" class="slider" id="relationship-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Disconnected</span>
+                        <span>10.00 - Very connected</span>
+                    </div>
+                </div>
+
+                <!-- Goals & Topics Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Goals & Topics</h3>
+                        <span class="text-2xl font-bold text-teal-600" id="goals-score">7.25</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Did we work on what you wanted to work on?</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="7.25" class="slider" id="goals-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Not at all</span>
+                        <span>10.00 - Completely</span>
+                    </div>
+                </div>
+
+                <!-- Approach Scale -->
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Approach</h3>
+                        <span class="text-2xl font-bold text-indigo-600" id="approach-score">5.80</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">How did the therapist's approach feel to you?</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="5.80" class="slider" id="approach-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Not a good fit</span>
+                        <span>10.00 - Perfect fit</span>
+                    </div>
+                </div>
+
+                <!-- Overall Session Scale -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-lg font-medium text-gray-700">Overall Session</h3>
+                        <span class="text-2xl font-bold text-red-600" id="session-overall-score">8.00</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-3">Overall, how was today's session for you?</p>
+                    <div class="slider-container">
+                        <div class="slider-track"></div>
+                        <input type="range" min="1" max="10" step="0.01" value="8.00" class="slider" id="session-overall-slider">
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500">
+                        <span>1.00 - Not helpful</span>
+                        <span>10.00 - Very helpful</span>
+                    </div>
+                </div>
+
+                <!-- SRS Total Score -->
+                <div class="bg-green-50 rounded-lg p-4 text-center">
+                    <h3 class="text-lg font-medium text-gray-700 mb-2">SRS Total Score</h3>
+                    <div class="text-3xl font-bold text-gray-800" id="srs-total-score">27.55</div>
+                    <div class="text-sm text-gray-600">out of 40.00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combined Total Score -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <div class="text-center">
+                <h3 class="text-xl font-semibold text-gray-800 mb-4">Combined Assessment Summary</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-700 mb-2">ORS Total</h4>
+                        <div class="text-2xl font-bold text-blue-600" id="display-ors-total">23.60</div>
+                        <div class="text-sm text-gray-600">Outcome Rating</div>
+                    </div>
+                    <div class="bg-green-50 rounded-lg p-4">
+                        <h4 class="font-medium text-gray-700 mb-2">SRS Total</h4>
+                        <div class="text-2xl font-bold text-green-600" id="display-srs-total">27.55</div>
+                        <div class="text-sm text-gray-600">Session Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex gap-4 justify-center flex-wrap">
+            <button onclick="resetAllSliders()" class="bg-gray-600 hover:bg-gray-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg">
+                Reset All Sliders
+            </button>
+            <button onclick="printAllScores()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg">
+                Print All Scores
+            </button>
+            <button onclick="exportToCSV()" class="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-medium transition-colors shadow-lg">
+                Export to CSV
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize all sliders
+        const orsSliders = ['individual', 'interpersonal', 'social', 'overall'];
+        const srsSliders = ['relationship', 'goals', 'approach', 'session-overall'];
+        
+        // Setup ORS sliders
+        orsSliders.forEach(sliderId => {
+            const slider = document.getElementById(sliderId + '-slider');
+            const scoreDisplay = document.getElementById(sliderId + '-score');
+            
+            slider.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                scoreDisplay.textContent = value.toFixed(2);
+                updateORSTotal();
+            });
+        });
+
+        // Setup SRS sliders
+        srsSliders.forEach(sliderId => {
+            const slider = document.getElementById(sliderId + '-slider');
+            const scoreDisplay = document.getElementById(sliderId + '-score');
+            
+            slider.addEventListener('input', function() {
+                const value = parseFloat(this.value);
+                scoreDisplay.textContent = value.toFixed(2);
+                updateSRSTotal();
+            });
+        });
+
+        function updateORSTotal() {
+            let total = 0;
+            orsSliders.forEach(sliderId => {
+                const score = parseFloat(document.getElementById(sliderId + '-score').textContent);
+                total += score;
+            });
+            const totalScore = total.toFixed(2);
+            document.getElementById('ors-total-score').textContent = totalScore;
+            document.getElementById('display-ors-total').textContent = totalScore;
+        }
+
+        function updateSRSTotal() {
+            let total = 0;
+            srsSliders.forEach(sliderId => {
+                const score = parseFloat(document.getElementById(sliderId + '-score').textContent);
+                total += score;
+            });
+            const totalScore = total.toFixed(2);
+            document.getElementById('srs-total-score').textContent = totalScore;
+            document.getElementById('display-srs-total').textContent = totalScore;
+        }
+
+        function resetAllSliders() {
+            // Reset ORS sliders
+            orsSliders.forEach(sliderId => {
+                const slider = document.getElementById(sliderId + '-slider');
+                const scoreDisplay = document.getElementById(sliderId + '-score');
+                
+                slider.value = 5.50;
+                scoreDisplay.textContent = '5.50';
+            });
+            
+            // Reset SRS sliders
+            srsSliders.forEach(sliderId => {
+                const slider = document.getElementById(sliderId + '-slider');
+                const scoreDisplay = document.getElementById(sliderId + '-score');
+                
+                slider.value = 5.50;
+                scoreDisplay.textContent = '5.50';
+            });
+            
+            updateORSTotal();
+            updateSRSTotal();
+        }
+
+        function exportToCSV() {
+            try {
+                // Get session information
+                const pupilName = document.getElementById('pupil-name').value || '';
+                const sessionDate = document.getElementById('session-date').value || '';
+                const sessionNumber = document.getElementById('session-number').value || '';
+                
+                // Get ORS scores
+                const orsIndividual = parseFloat(document.getElementById('individual-score').textContent);
+                const orsInterpersonal = parseFloat(document.getElementById('interpersonal-score').textContent);
+                const orsSocial = parseFloat(document.getElementById('social-score').textContent);
+                const orsOverall = parseFloat(document.getElementById('overall-score').textContent);
+                const orsTotal = parseFloat(document.getElementById('ors-total-score').textContent);
+                
+                // Get SRS scores
+                const srsRelationship = parseFloat(document.getElementById('relationship-score').textContent);
+                const srsGoals = parseFloat(document.getElementById('goals-score').textContent);
+                const srsApproach = parseFloat(document.getElementById('approach-score').textContent);
+                const srsOverallSession = parseFloat(document.getElementById('session-overall-score').textContent);
+                const srsTotal = parseFloat(document.getElementById('srs-total-score').textContent);
+                
+                // Create CSV header
+                const headers = [
+                    'Pupil Name', 'Date', 'Session Number',
+                    'ORS Individual', 'ORS Interpersonal', 'ORS Social', 'ORS Overall', 'ORS Total',
+                    'SRS Relationship', 'SRS Goals & Topics', 'SRS Approach', 'SRS Overall Session', 'SRS Total'
+                ];
+                
+                // Create CSV data row - properly escape any commas in names
+                const dataRow = [
+                    `"${pupilName}"`, `"${sessionDate}"`, `"${sessionNumber}"`,
+                    orsIndividual.toFixed(2), orsInterpersonal.toFixed(2), orsSocial.toFixed(2), orsOverall.toFixed(2), orsTotal.toFixed(2),
+                    srsRelationship.toFixed(2), srsGoals.toFixed(2), srsApproach.toFixed(2), srsOverallSession.toFixed(2), srsTotal.toFixed(2)
+                ];
+                
+                // Combine header and data
+                const csvContent = headers.join(',') + '\n' + dataRow.join(',');
+                
+                // Create filename with date and pupil name if available
+                const today = new Date().toISOString().split('T')[0];
+                const safePupilName = pupilName ? pupilName.replace(/[^a-zA-Z0-9]/g, '_') : 'Assessment';
+                const fileName = `ORS_SRS_${safePupilName}_${sessionDate || today}.csv`;
+                
+                // Use data URI approach for better Canva compatibility
+                const dataUri = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csvContent);
+                
+                // Create and trigger download
+                const link = document.createElement('a');
+                link.href = dataUri;
+                link.download = fileName;
+                
+                // For Canva compatibility, ensure the link is properly added to DOM
+                document.body.appendChild(link);
+                
+                // Force click event
+                const clickEvent = new MouseEvent('click', {
+                    view: window,
+                    bubbles: true,
+                    cancelable: false
+                });
+                link.dispatchEvent(clickEvent);
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(link);
+                }, 100);
+                
+                // Show success message
+                setTimeout(() => {
+                    alert('CSV file should be downloading! Check your Downloads folder.');
+                }, 200);
+                
+            } catch (error) {
+                console.error('CSV Export Error:', error);
+                
+                // Fallback: Show CSV content in a popup for manual copy/paste
+                const pupilName = document.getElementById('pupil-name').value || '';
+                const sessionDate = document.getElementById('session-date').value || '';
+                const sessionNumber = document.getElementById('session-number').value || '';
+                
+                const orsIndividual = parseFloat(document.getElementById('individual-score').textContent);
+                const orsInterpersonal = parseFloat(document.getElementById('interpersonal-score').textContent);
+                const orsSocial = parseFloat(document.getElementById('social-score').textContent);
+                const orsOverall = parseFloat(document.getElementById('overall-score').textContent);
+                const orsTotal = parseFloat(document.getElementById('ors-total-score').textContent);
+                
+                const srsRelationship = parseFloat(document.getElementById('relationship-score').textContent);
+                const srsGoals = parseFloat(document.getElementById('goals-score').textContent);
+                const srsApproach = parseFloat(document.getElementById('approach-score').textContent);
+                const srsOverallSession = parseFloat(document.getElementById('session-overall-score').textContent);
+                const srsTotal = parseFloat(document.getElementById('srs-total-score').textContent);
+                
+                const csvData = `Pupil Name,Date,Session Number,ORS Individual,ORS Interpersonal,ORS Social,ORS Overall,ORS Total,SRS Relationship,SRS Goals & Topics,SRS Approach,SRS Overall Session,SRS Total
+"${pupilName}","${sessionDate}","${sessionNumber}",${orsIndividual.toFixed(2)},${orsInterpersonal.toFixed(2)},${orsSocial.toFixed(2)},${orsOverall.toFixed(2)},${orsTotal.toFixed(2)},${srsRelationship.toFixed(2)},${srsGoals.toFixed(2)},${srsApproach.toFixed(2)},${srsOverallSession.toFixed(2)},${srsTotal.toFixed(2)}`;
+                
+                const newWindow = window.open('', '_blank');
+                newWindow.document.write(`
+                    <html>
+                    <head><title>CSV Data - Copy and Save</title></head>
+                    <body style="font-family: Arial, sans-serif; padding: 20px;">
+                        <h2>CSV Export Data</h2>
+                        <p>Copy the text below and save it as a .csv file:</p>
+                        <textarea style="width: 100%; height: 200px; font-family: monospace;" readonly>${csvData}</textarea>
+                        <p><strong>Instructions:</strong><br>
+                        1. Select all the text above (Ctrl+A)<br>
+                        2. Copy it (Ctrl+C)<br>
+                        3. Open a text editor (Notepad, TextEdit, etc.)<br>
+                        4. Paste the text (Ctrl+V)<br>
+                        5. Save as filename.csv</p>
+                    </body>
+                    </html>
+                `);
+            }
+        }
+
+        function printAllScores() {
+            // Get session information
+            const pupilName = document.getElementById('pupil-name').value || 'Not specified';
+            const sessionDate = document.getElementById('session-date').value || new Date().toLocaleDateString();
+            const sessionNumber = document.getElementById('session-number').value || 'Not specified';
+            
+            const orsScores = {};
+            const srsScores = {};
+            
+            orsSliders.forEach(sliderId => {
+                orsScores[sliderId] = parseFloat(document.getElementById(sliderId + '-score').textContent);
+            });
+            
+            srsSliders.forEach(sliderId => {
+                srsScores[sliderId] = parseFloat(document.getElementById(sliderId + '-score').textContent);
+            });
+            
+            const orsTotal = parseFloat(document.getElementById('ors-total-score').textContent);
+            const srsTotal = parseFloat(document.getElementById('srs-total-score').textContent);
+            
+            const output = `ORS & SRS ASSESSMENT RESULTS
+
+SESSION INFORMATION:
+Pupil Name: ${pupilName}
+Date: ${sessionDate}
+Session Number: ${sessionNumber}
+
+ORS - OUTCOME RATING SCALE:
+Individual: ${orsScores.individual.toFixed(2)}/10.00
+Interpersonal: ${orsScores.interpersonal.toFixed(2)}/10.00  
+Social: ${orsScores.social.toFixed(2)}/10.00
+Overall: ${orsScores.overall.toFixed(2)}/10.00
+ORS Total: ${orsTotal.toFixed(2)}/40.00
+
+SRS - SESSION RATING SCALE:
+Relationship: ${srsScores.relationship.toFixed(2)}/10.00
+Goals & Topics: ${srsScores.goals.toFixed(2)}/10.00
+Approach: ${srsScores.approach.toFixed(2)}/10.00
+Overall Session: ${srsScores['session-overall'].toFixed(2)}/10.00
+SRS Total: ${srsTotal.toFixed(2)}/40.00`;
+            
+            // Create a new window for printing
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>ORS & SRS Assessment Results</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+                        h1 { color: #333; border-bottom: 2px solid #333; }
+                        .section { margin: 20px 0; }
+                        .scores { background: #f5f5f5; padding: 15px; border-radius: 5px; }
+                    </style>
+                </head>
+                <body>
+                    <h1>ORS & SRS Assessment Results</h1>
+                    <div class="section">
+                        <h3>Session Information:</h3>
+                        <p><strong>Pupil Name:</strong> ${pupilName}</p>
+                        <p><strong>Date:</strong> ${sessionDate}</p>
+                        <p><strong>Session Number:</strong> ${sessionNumber}</p>
+                    </div>
+                    <div class="section">
+                        <h3>ORS - Outcome Rating Scale:</h3>
+                        <div class="scores">
+                            <p>Individual: ${orsScores.individual.toFixed(2)}/10.00</p>
+                            <p>Interpersonal: ${orsScores.interpersonal.toFixed(2)}/10.00</p>
+                            <p>Social: ${orsScores.social.toFixed(2)}/10.00</p>
+                            <p>Overall: ${orsScores.overall.toFixed(2)}/10.00</p>
+                            <p><strong>ORS Total: ${orsTotal.toFixed(2)}/40.00</strong></p>
+                        </div>
+                    </div>
+                    <div class="section">
+                        <h3>SRS - Session Rating Scale:</h3>
+                        <div class="scores">
+                            <p>Relationship: ${srsScores.relationship.toFixed(2)}/10.00</p>
+                            <p>Goals & Topics: ${srsScores.goals.toFixed(2)}/10.00</p>
+                            <p>Approach: ${srsScores.approach.toFixed(2)}/10.00</p>
+                            <p>Overall Session: ${srsScores['session-overall'].toFixed(2)}/10.00</p>
+                            <p><strong>SRS Total: ${srsTotal.toFixed(2)}/40.00</strong></p>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Initialize totals on page load
+        updateORSTotal();
+        updateSRSTotal();
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'979dff44519a93f4',t:'MTc1Njk5NDI1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
